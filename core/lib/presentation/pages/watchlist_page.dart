@@ -1,10 +1,10 @@
 import 'package:core/styles/colors.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:core/utils/utils.dart';
-import 'package:core/presentation/provider/movie/watchlist_movie_notifier.dart';
-import 'package:core/presentation/provider/tv/watchlist_tv_notifier.dart';
-import 'package:core/presentation/widgets/movie_card_list.dart';
-import 'package:core/presentation/widgets/tv_card_list.dart';
+import 'package:movies/presentation/provider/movie/watchlist_movie_notifier.dart';
+import 'package:tvserials/presentation/provider/tv/watchlist_tv_notifier.dart';
+import 'package:movies/presentation/widgets/movie_card_list.dart';
+import 'package:tvserials/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

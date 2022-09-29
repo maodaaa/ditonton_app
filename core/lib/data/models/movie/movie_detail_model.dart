@@ -1,5 +1,5 @@
 import 'package:core/data/models/genre_model.dart';
-import 'package:core/domain/entities/movie/movie_detail.dart';
+import 'package:movies/domain/entities/movie/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieDetailResponse extends Equatable {

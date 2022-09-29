@@ -6,7 +6,7 @@ import 'package:core/data/models/movie/movie_model.dart';
 import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/utils/exception.dart';
 import 'package:core/utils/failure.dart';
-import 'package:core/domain/entities/movie/movie.dart';
+import 'package:movies/domain/entities/movie/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import '../../dummy_data/dummy_objects_movie.dart';

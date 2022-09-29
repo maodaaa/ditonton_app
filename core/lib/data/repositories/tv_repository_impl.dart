@@ -3,9 +3,9 @@ import 'package:dartz/dartz.dart';
 import 'package:core/data/datasources/tv/tv_local_data_source.dart';
 import 'package:core/data/datasources/tv/tv_remote_data_source.dart';
 import 'package:core/data/models/tv/tv_table.dart';
-import 'package:core/domain/entities/tv/tv.dart';
-import 'package:core/domain/entities/tv/tv_detail.dart';
-import 'package:core/domain/repositories/tv_repository.dart';
+import 'package:tvserials/domain/entities/tv/tv.dart';
+import 'package:tvserials/domain/entities/tv/tv_detail.dart';
+import 'package:tvserials/domain/repositories/tv_repository.dart';
 import 'package:core/utils/exception.dart';
 import 'package:core/utils/failure.dart';
 

@@ -1,5 +1,5 @@
-import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/domain/entities/movie/movie_detail.dart';
+import 'package:movies/domain/entities/movie/movie.dart';
+import 'package:movies/domain/entities/movie/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieTable extends Equatable {

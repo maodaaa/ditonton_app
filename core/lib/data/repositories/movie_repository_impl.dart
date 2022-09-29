@@ -3,9 +3,9 @@ import 'package:dartz/dartz.dart';
 import 'package:core/data/datasources/movie/movie_local_data_source.dart';
 import 'package:core/data/datasources/movie/movie_remote_data_source.dart';
 import 'package:core/data/models/movie/movie_table.dart';
-import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/domain/entities/movie/movie_detail.dart';
-import 'package:core/domain/repositories/movie_repository.dart';
+import 'package:movies/domain/entities/movie/movie.dart';
+import 'package:movies/domain/entities/movie/movie_detail.dart';
+import 'package:movies/domain/repositories/movie_repository.dart';
 import 'package:core/utils/exception.dart';
 import 'package:core/utils/failure.dart';
 

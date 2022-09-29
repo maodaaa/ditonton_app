@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'package:core/utils/encrypt.dart';
 import 'package:core/data/models/tv/tv_table.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart';
 
 class DatabaseHelperTvSerial {
   static DatabaseHelperTvSerial? _databaseHelperTvSerial;
@@ -24,12 +25,16 @@ class DatabaseHelperTvSerial {
     final path = await getDatabasesPath();
     final databasePath = '$path/tvserial.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(databasePath,
+        version: 1,
+        onCreate: _onCreate,
+        password: encrypt('aduhinipasswordsangatsusahsekaliyagaesya'));
     return db;
   }
 
   void _onCreate(Database db, int version) async {
-    await db.execute('''
+    await db.execute(
+        '''
       CREATE TABLE  $_tblWatchlistTvSerial (
         id INTEGER PRIMARY KEY,
         name TEXT,

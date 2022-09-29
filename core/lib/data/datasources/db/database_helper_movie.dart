@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'package:core/utils/encrypt.dart';
 import 'package:core/data/models/movie/movie_table.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart';
 
 class DatabaseHelperMovie {
   static DatabaseHelperMovie? _databaseHelperMovie;
@@ -24,12 +25,16 @@ class DatabaseHelperMovie {
     final path = await getDatabasesPath();
     final databasePath = '$path/ditonton.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(databasePath,
+        version: 1,
+        onCreate: _onCreate,
+        password: encrypt('aduhinipasswordsangatsusahsekaliyagaesya'));
     return db;
   }
 
   void _onCreate(Database db, int version) async {
-    await db.execute('''
+    await db.execute(
+        '''
       CREATE TABLE  $_tblWatchlist (
         id INTEGER PRIMARY KEY,
         title TEXT,
