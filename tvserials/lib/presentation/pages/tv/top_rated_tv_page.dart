@@ -1,8 +1,7 @@
-import 'package:core/utils/state_enum.dart';
-import 'package:tvserials/presentation/provider/tv/top_rated_tv_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tvserials/presentation/bloc/top_rated_tv/top_rated_tv_bloc.dart';
 import 'package:tvserials/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class TopRatedTvPage extends StatefulWidget {
   const TopRatedTvPage({super.key});
@@ -16,8 +15,8 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<TopRatedTvSerialsNotifier>(context, listen: false)
-            .fetchTopRatedTvSerials());
+        BlocProvider.of<TopRatedTvBloc>(context, listen: false)
+            .add(OnTopRatedTvCalled()));
   }
 
   @override
@@ -28,24 +27,26 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TopRatedTvSerialsNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+        child: BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+          builder: (context, state) {
+            if (state is TopRatedTvLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (state is TopRatedTvHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final tvSerial = data.tvSerials[index];
+                  final tvSerial = state.result[index];
                   return TvCard(tvSerial);
                 },
-                itemCount: data.tvSerials.length,
+                itemCount: state.result.length,
               );
-            } else {
+            } else if (state is TopRatedTvError) {
               return Center(
-                key: const Key('error_message'),
-                child: Text(data.message),
+                  key: const Key('error_message'), child: Text(state.message));
+            } else {
+              return const Center(
+                child: Text("failed to load"),
               );
             }
           },
