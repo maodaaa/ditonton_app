@@ -13,7 +13,7 @@ void main() {
     seasonNumber: 0,
   );
 
-  final tSeason = Season(
+  const tSeason = Season(
     airDate: "2010-12-05",
     episodeCount: 64,
     id: 3627,

@@ -1,22 +1,21 @@
 import 'package:core/utils/state_enum.dart';
 import 'package:movies/domain/entities/movie/movie.dart';
+import 'package:movies/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:movies/presentation/pages/movie/movie_detail_page.dart';
-import 'package:movies/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
-
 import '../../dummy_data/dummy_objects_movie.dart';
 import 'movie_detail_page_test.mocks.dart';
 
-@GenerateMocks([MovieDetailNotifier])
+@GenerateMocks([MovieDetailBloc])
 void main() {
-  late MockMovieDetailNotifier mockNotifier;
+  late MovieDetailBloc mockNotifier;
 
   setUp(() {
-    mockNotifier = MockMovieDetailNotifier();
+    mockNotifier = MovieDetailBloc();
   });
 
   Widget _makeTestableWidget(Widget body) {

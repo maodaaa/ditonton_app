@@ -1,4 +1,6 @@
 import 'package:core/utils/http_ssl_pinning.dart';
+import 'package:ditonton/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/presentation/bloc/movie_detail/movie_detail_bloc.dart';
@@ -33,6 +35,9 @@ import 'package:tvserials/presentation/pages/tv/tv_detail_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HttpSslPinning.init();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   di.init();
   runApp(MyApp());
 }

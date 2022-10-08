@@ -22,7 +22,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:movies/domain/entities/movie/movie.dart' as _i8;
 import 'package:movies/domain/entities/movie/movie_detail.dart' as _i9;
 import 'package:movies/domain/repositories/movie_repository.dart' as _i5;
-import 'package:sqflite/sqflite.dart' as _i15;
+import 'package:sqflite_sqlcipher/sqflite.dart' as _i15;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

@@ -18,7 +18,7 @@ import 'package:core/utils/failure.dart' as _i7;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:http/http.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:sqflite/sqflite.dart' as _i15;
+import 'package:sqflite_sqlcipher/sqflite.dart' as _i15;
 import 'package:tvserials/domain/entities/tv/tv.dart' as _i8;
 import 'package:tvserials/domain/entities/tv/tv_detail.dart' as _i9;
 import 'package:tvserials/domain/repositories/tv_repository.dart' as _i5;
