@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TopRatedMoviesBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<WatchListMovieBloc>(),
+          create: (_) => di.locator<MovieWatchListBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MovieRecommendationBloc>(),
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TopRatedTvBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<WatchListTvBloc>(),
+          create: (_) => di.locator<TvWatchListBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<TvRecommendationBloc>(),

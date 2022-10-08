@@ -10,16 +10,13 @@ import 'package:tvserials/domain/usecases/tv/save_watchlist_tv.dart';
 part 'watchlist_tv_event.dart';
 part 'watchlist_tv_state.dart';
 
-class WatchListTvBloc extends Bloc<TvWatchListEvent, TvWatchListState> {
+class TvWatchListBloc extends Bloc<TvWatchListEvent, TvWatchListState> {
   final GetWatchListTvSerialStatus _getWatchListTvSerialStatus;
   final GetWatchlistTvSerial _getWatchlistTvSerial;
   final SaveWatchlistTvSerial _saveWatchlistTvSerial;
   final RemoveWatchlistTvSerial _removeWatchlistTvSerial;
 
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
-
-  WatchListTvBloc(this._getWatchListTvSerialStatus, this._getWatchlistTvSerial,
+  TvWatchListBloc(this._getWatchListTvSerialStatus, this._getWatchlistTvSerial,
       this._saveWatchlistTvSerial, this._removeWatchlistTvSerial)
       : super(TvWatchListEmpty()) {
     on<OnGetTvWatchListStatus>((event, emit) async {

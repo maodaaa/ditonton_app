@@ -19,9 +19,9 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   void initState() {
     super.initState();
     Future.microtask(() {
-      BlocProvider.of<WatchListTvBloc>(context, listen: false)
+      BlocProvider.of<TvWatchListBloc>(context, listen: false)
           .add(OnTvWatchListCalled());
-      BlocProvider.of<WatchListMovieBloc>(context, listen: false)
+      BlocProvider.of<MovieWatchListBloc>(context, listen: false)
           .add(OnMovieWatchListCalled());
     });
   }
@@ -34,9 +34,9 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
 
   @override
   void didPopNext() {
-    BlocProvider.of<WatchListTvBloc>(context, listen: false)
+    BlocProvider.of<TvWatchListBloc>(context, listen: false)
         .add(OnTvWatchListCalled());
-    BlocProvider.of<WatchListMovieBloc>(context, listen: false)
+    BlocProvider.of<MovieWatchListBloc>(context, listen: false)
         .add(OnMovieWatchListCalled());
   }
 
@@ -77,7 +77,7 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<WatchListMovieBloc, MovieWatchListState>(
+        child: BlocBuilder<MovieWatchListBloc, MovieWatchListState>(
           builder: (context, state) {
             if (state is MovieWatchListLoading) {
               return const Center(
@@ -109,7 +109,7 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<WatchListTvBloc, TvWatchListState>(
+        child: BlocBuilder<TvWatchListBloc, TvWatchListState>(
           builder: (context, state) {
             if (state is TvWatchListLoading) {
               return const Center(

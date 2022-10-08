@@ -10,17 +10,14 @@ import 'package:movies/domain/usecases/movie/save_watchlist.dart';
 part 'watchlist_movie_event.dart';
 part 'watchlist_movie_state.dart';
 
-class WatchListMovieBloc
+class MovieWatchListBloc
     extends Bloc<MovieWatchListEvent, MovieWatchListState> {
   final GetWatchListStatus _getWatchListStatus;
   final GetWatchlistMovies _getWatchlistMovies;
   final SaveWatchlist _saveWatchlist;
   final RemoveWatchlist _removeWatchlist;
 
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
-
-  WatchListMovieBloc(this._getWatchListStatus, this._getWatchlistMovies,
+  MovieWatchListBloc(this._getWatchListStatus, this._getWatchlistMovies,
       this._saveWatchlist, this._removeWatchlist)
       : super(MovieWatchListEmpty()) {
     on<OnGetMovieWatchListStatus>((event, emit) async {
@@ -59,7 +56,6 @@ class WatchListMovieBloc
     on<OnRemoveMovieCalled>(
       ((event, emit) async {
         final result = await _removeWatchlist.execute(event.movieDetail);
-
         result.fold(
           (failure) {
             emit(MovieWatchListError(failure.message));

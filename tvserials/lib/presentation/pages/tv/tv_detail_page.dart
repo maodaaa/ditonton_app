@@ -29,7 +29,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
           .add(OnTvDetailCalled(widget.id));
       BlocProvider.of<TvRecommendationBloc>(context, listen: false)
           .add(OnTvRecommendationCalled(widget.id));
-      BlocProvider.of<WatchListTvBloc>(context, listen: false)
+      BlocProvider.of<TvWatchListBloc>(context, listen: false)
           .add(OnGetTvWatchListStatus(widget.id));
     });
   }
@@ -109,53 +109,41 @@ class DetailContent extends StatelessWidget {
                               tvSerial.name,
                               style: kHeading5,
                             ),
-                            // ElevatedButton(
-                            //   onPressed: () async {
-                            //     if (!isAddedWatchlist) {
-                            //       await Provider.of<TvSerialDetailNotifier>(
-                            //               context,
-                            //               listen: false)
-                            //           .addWatchlist(tvSerial);
-                            //     } else {
-                            //       await Provider.of<TvSerialDetailNotifier>(
-                            //               context,
-                            //               listen: false)
-                            //           .removeFromWatchlist(tvSerial);
-                            //     }
-
-                            //     final message =
-                            //         Provider.of<TvSerialDetailNotifier>(context,
-                            //                 listen: false)
-                            //             .watchlistMessage;
-
-                            //     if (message ==
-                            //             TvSerialDetailNotifier
-                            //                 .watchlistAddSuccessMessage ||
-                            //         message ==
-                            //             TvSerialDetailNotifier
-                            //                 .watchlistRemoveSuccessMessage) {
-                            //       ScaffoldMessenger.of(context).showSnackBar(
-                            //           SnackBar(content: Text(message)));
-                            //     } else {
-                            //       showDialog(
-                            //           context: context,
-                            //           builder: (context) {
-                            //             return AlertDialog(
-                            //               content: Text(message),
-                            //             );
-                            //           });
-                            //     }
-                            //   },
-                            //   child: Row(
-                            //     mainAxisSize: MainAxisSize.min,
-                            //     children: [
-                            //       isAddedWatchlist
-                            //           ? const Icon(Icons.check)
-                            //           : const Icon(Icons.add),
-                            //       const Text('Watchlist'),
-                            //     ],
-                            //   ),
-                            // ),
+                            BlocConsumer<TvWatchListBloc, TvWatchListState>(
+                              listenWhen: (previous, current) {
+                                if (previous is TvWatchListMassage !=
+                                    current is TvWatchListMassage) {
+                                  return true;
+                                } else {
+                                  return false;
+                                }
+                              },
+                              listener: (context, state) {
+                                if (state is TvWatchListStatus) {
+                                  final isAddedToWatchList =
+                                      state.isAddedToWatchlist;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      duration: const Duration(seconds: 1),
+                                      backgroundColor: kMikadoYellow,
+                                      content: isAddedToWatchList
+                                          ? const Text('Added to Watchlist')
+                                          : const Text(
+                                              ' Removed From Watchlist'),
+                                    ),
+                                  );
+                                }
+                              },
+                              builder: (context, state) {
+                                if (state is TvWatchListStatus) {
+                                  final isAddedToWatchList =
+                                      state.isAddedToWatchlist;
+                                  return ElevatedBtn(
+                                      isAddedToWatchList, tvSerial);
+                                }
+                                return Container();
+                              },
+                            ),
                             Text(
                               _showGenres(tvSerial.genres),
                             ),
@@ -320,5 +308,32 @@ class DetailContent extends StatelessWidget {
     } else {
       return tvSerial.status;
     }
+  }
+}
+
+class ElevatedBtn extends StatelessWidget {
+  final TvSerialDetail tvSerial;
+  final bool isAddedToWatchList;
+
+  const ElevatedBtn(this.isAddedToWatchList, this.tvSerial, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () async {
+        if (!isAddedToWatchList) {
+          context.read<TvWatchListBloc>().add(OnAddTvCalled(tvSerial));
+        } else {
+          context.read<TvWatchListBloc>().add(OnRemoveTvCalled(tvSerial));
+        }
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          isAddedToWatchList ? const Icon(Icons.check) : const Icon(Icons.add),
+          const Text('Watchlist'),
+        ],
+      ),
+    );
   }
 }
