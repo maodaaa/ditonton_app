@@ -1,3 +1,4 @@
+import 'package:core/utils/http_ssl_pinning.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/presentation/bloc/movie_detail/movie_detail_bloc.dart';
@@ -29,7 +30,9 @@ import 'package:tvserials/presentation/pages/tv/popular_tv_page.dart';
 import 'package:tvserials/presentation/pages/tv/top_rated_tv_page.dart';
 import 'package:tvserials/presentation/pages/tv/tv_detail_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HttpSslPinning.init();
   di.init();
   runApp(MyApp());
 }

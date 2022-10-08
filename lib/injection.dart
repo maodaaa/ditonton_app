@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+import 'package:core/utils/http_ssl_pinning.dart';
 import 'package:core/data/datasources/db/database_helper_tv_serial.dart';
 import 'package:core/data/repositories/tv_repository_impl.dart';
 import 'package:get_it/get_it.dart';
@@ -184,5 +184,5 @@ void init() {
       () => DatabaseHelperTvSerial());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSslPinning.client);
 }
