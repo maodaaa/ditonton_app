@@ -24,7 +24,6 @@ class MovieWatchListBloc
       final result = await _getWatchListStatus.execute(event.id);
       emit(MovieWatchListStatus(result));
     });
-
     on<OnMovieWatchListCalled>((event, emit) async {
       emit(MovieWatchListLoading());
       final result = await _getWatchlistMovies.execute();

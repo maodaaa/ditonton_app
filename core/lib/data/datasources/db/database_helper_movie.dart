@@ -1,3 +1,4 @@
+// coverage:ignore-file
 import 'dart:async';
 import 'package:core/utils/encrypt.dart';
 import 'package:core/data/models/movie/movie_table.dart';

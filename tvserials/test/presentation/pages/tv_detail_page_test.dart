@@ -1,106 +1,106 @@
-import 'package:core/utils/state_enum.dart';
-import 'package:tvserials/domain/entities/tv/tv.dart';
-import 'package:tvserials/presentation/bloc/tv_detail/tv_detail_bloc.dart';
-import 'package:tvserials/presentation/pages/tv/tv_detail_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import '../../dummy_data/dummy_objects_tv.dart';
-import 'tv_detail_page_test.mocks.dart';
+// import 'package:core/utils/state_enum.dart';
+// import 'package:tvserials/domain/entities/tv/tv.dart';
+// import 'package:tvserials/presentation/bloc/tv_detail/tv_detail_bloc.dart';
+// import 'package:tvserials/presentation/pages/tv/tv_detail_page.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:mockito/annotations.dart';
+// import 'package:mockito/mockito.dart';
+// import '../../dummy_data/dummy_objects_tv.dart';
+// import 'tv_detail_page_test.mocks.dart';
 
-@GenerateMocks([TvDetailBloc])
-void main() {
-  // late MockTvSerialDetailNotifier mockNotifier;
+// @GenerateMocks([TvDetailBloc])
+// void main() {
+//   // late MockTvSerialDetailNotifier mockNotifier;
 
-  // setUp(() {
-  //   mockNotifier = MockTvSerialDetailNotifier();
-  // });
+//   // setUp(() {
+//   //   mockNotifier = MockTvSerialDetailNotifier();
+//   // });
 
-  // Widget _makeTestableWidget(Widget body) {
-  //   return ChangeNotifierProvider<TvSerialDetailNotifier>.value(
-  //     value: mockNotifier,
-  //     child: MaterialApp(
-  //       home: body,
-  //     ),
-  //   );
-  // }
+//   // Widget _makeTestableWidget(Widget body) {
+//   //   return ChangeNotifierProvider<TvSerialDetailNotifier>.value(
+//   //     value: mockNotifier,
+//   //     child: MaterialApp(
+//   //       home: body,
+//   //     ),
+//   //   );
+//   // }
 
-  // testWidgets(
-  //     'Watchlist button should display add icon when tv not added to watchlist',
-  //     (WidgetTester tester) async {
-  //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
-  //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
-  //   when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+//   // testWidgets(
+//   //     'Watchlist button should display add icon when tv not added to watchlist',
+//   //     (WidgetTester tester) async {
+//   //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
+//   //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
+//   //   when(mockNotifier.isAddedToWatchlist).thenReturn(false);
 
-  //   final watchlistButtonIcon = find.byIcon(Icons.add);
+//   //   final watchlistButtonIcon = find.byIcon(Icons.add);
 
-  //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+//   //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
-  //   expect(watchlistButtonIcon, findsOneWidget);
-  // });
+//   //   expect(watchlistButtonIcon, findsOneWidget);
+//   // });
 
-  // testWidgets(
-  //     'Watchlist button should dispay check icon when Tv is added to wathclist',
-  //     (WidgetTester tester) async {
-  //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
-  //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
-  //   when(mockNotifier.isAddedToWatchlist).thenReturn(true);
+//   // testWidgets(
+//   //     'Watchlist button should dispay check icon when Tv is added to wathclist',
+//   //     (WidgetTester tester) async {
+//   //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
+//   //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
+//   //   when(mockNotifier.isAddedToWatchlist).thenReturn(true);
 
-  //   final watchlistButtonIcon = find.byIcon(Icons.check);
+//   //   final watchlistButtonIcon = find.byIcon(Icons.check);
 
-  //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+//   //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
-  //   expect(watchlistButtonIcon, findsOneWidget);
-  // });
+//   //   expect(watchlistButtonIcon, findsOneWidget);
+//   // });
 
-  // testWidgets(
-  //     'Watchlist button should display Snackbar when added to watchlist',
-  //     (WidgetTester tester) async {
-  //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
-  //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
-  //   when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-  //   when(mockNotifier.watchlistMessage).thenReturn('Added to Watchlist');
+//   // testWidgets(
+//   //     'Watchlist button should display Snackbar when added to watchlist',
+//   //     (WidgetTester tester) async {
+//   //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
+//   //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
+//   //   when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+//   //   when(mockNotifier.watchlistMessage).thenReturn('Added to Watchlist');
 
-  //   final watchlistButton = find.byType(ElevatedButton);
+//   //   final watchlistButton = find.byType(ElevatedButton);
 
-  //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+//   //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
-  //   expect(find.byIcon(Icons.add), findsOneWidget);
+//   //   expect(find.byIcon(Icons.add), findsOneWidget);
 
-  //   await tester.tap(watchlistButton);
-  //   await tester.pump();
+//   //   await tester.tap(watchlistButton);
+//   //   await tester.pump();
 
-  //   expect(find.byType(SnackBar), findsOneWidget);
-  //   expect(find.text('Added to Watchlist'), findsOneWidget);
-  // });
+//   //   expect(find.byType(SnackBar), findsOneWidget);
+//   //   expect(find.text('Added to Watchlist'), findsOneWidget);
+//   // });
 
-  // testWidgets(
-  //     'Watchlist button should display AlertDialog when add to watchlist failed',
-  //     (WidgetTester tester) async {
-  //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
-  //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-  //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
-  //   when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-  //   when(mockNotifier.watchlistMessage).thenReturn('Failed');
+//   // testWidgets(
+//   //     'Watchlist button should display AlertDialog when add to watchlist failed',
+//   //     (WidgetTester tester) async {
+//   //   when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerial).thenReturn(testTvSerialDetail);
+//   //   when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
+//   //   when(mockNotifier.tvSerialRecommendations).thenReturn(<TvSerial>[]);
+//   //   when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+//   //   when(mockNotifier.watchlistMessage).thenReturn('Failed');
 
-  //   final watchlistButton = find.byType(ElevatedButton);
+//   //   final watchlistButton = find.byType(ElevatedButton);
 
-  //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+//   //   await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
 
-  //   expect(find.byIcon(Icons.add), findsOneWidget);
+//   //   expect(find.byIcon(Icons.add), findsOneWidget);
 
-  //   await tester.tap(watchlistButton);
-  //   await tester.pump();
+//   //   await tester.tap(watchlistButton);
+//   //   await tester.pump();
 
-  //   expect(find.byType(AlertDialog), findsOneWidget);
-  //   expect(find.text('Failed'), findsOneWidget);
-  // });
-}
+//   //   expect(find.byType(AlertDialog), findsOneWidget);
+//   //   expect(find.text('Failed'), findsOneWidget);
+//   // });
+// }
