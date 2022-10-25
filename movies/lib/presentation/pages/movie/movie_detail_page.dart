@@ -14,7 +14,7 @@ class MovieDetailPage extends StatefulWidget {
   const MovieDetailPage({super.key, required this.id});
 
   @override
-  _MovieDetailPageState createState() => _MovieDetailPageState();
+  createState() => _MovieDetailPageState();
 }
 
 class _MovieDetailPageState extends State<MovieDetailPage> {
@@ -22,12 +22,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      BlocProvider.of<MovieDetailBloc>(context, listen: false)
-          .add(OnDetailCalled(widget.id));
-      BlocProvider.of<MovieRecommendationBloc>(context, listen: false)
-          .add(OnRecommendationCalled(widget.id));
-      BlocProvider.of<MovieWatchListBloc>(context, listen: false)
-          .add(OnGetMovieWatchListStatus(widget.id));
+      BlocProvider.of<MovieDetailBloc>(context, listen: false).add(OnDetailCalled(widget.id));
+      BlocProvider.of<MovieRecommendationBloc>(context, listen: false).add(OnRecommendationCalled(widget.id));
+      BlocProvider.of<MovieWatchListBloc>(context, listen: false).add(OnGetMovieWatchListStatus(widget.id));
     });
   }
 
@@ -46,8 +43,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               child: DetailContent(movie),
             );
           } else if (state is MovieDetailError) {
-            return Center(
-                key: const Key('error_message'), child: Text(state.message));
+            return Center(key: const Key('error_message'), child: Text(state.message));
           } else {
             return const Center(
               child: Text("failed to load"),
@@ -104,11 +100,9 @@ class DetailContent extends StatelessWidget {
                               movie.title,
                               style: kHeading5,
                             ),
-                            BlocConsumer<MovieWatchListBloc,
-                                MovieWatchListState>(
+                            BlocConsumer<MovieWatchListBloc, MovieWatchListState>(
                               listenWhen: (previous, current) {
-                                if (previous is MovieWatchListMassage !=
-                                    current is MovieWatchListMassage) {
+                                if (previous is MovieWatchListMassage != current is MovieWatchListMassage) {
                                   return true;
                                 } else {
                                   return false;
@@ -116,25 +110,20 @@ class DetailContent extends StatelessWidget {
                               },
                               listener: (context, state) {
                                 if (state is MovieWatchListStatus) {
-                                  final isAddedToWatchList =
-                                      state.isAddedToWatchlist;
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       duration: const Duration(seconds: 1),
                                       backgroundColor: kMikadoYellow,
-                                      content: isAddedToWatchList
+                                      content: state.isAddedToWatchlist
                                           ? const Text('Added to Watchlist')
-                                          : const Text(
-                                              ' Removed From Watchlist'),
+                                          : const Text(' Removed From Watchlist'),
                                     ),
                                   );
                                 }
                               },
                               builder: (context, state) {
                                 if (state is MovieWatchListStatus) {
-                                  final isAddedToWatchList =
-                                      state.isAddedToWatchlist;
-                                  return ElevatedBtn(isAddedToWatchList, movie);
+                                  return ElevatedBtn(state.isAddedToWatchlist, movie);
                                 }
                                 return Container();
                               },
@@ -172,8 +161,7 @@ class DetailContent extends StatelessWidget {
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            BlocBuilder<MovieRecommendationBloc,
-                                MovieRecommendationState>(
+                            BlocBuilder<MovieRecommendationBloc, MovieRecommendationState>(
                               builder: (context, state) {
                                 if (state is MovieRecommendationLoading) {
                                   return const Center(
@@ -181,8 +169,7 @@ class DetailContent extends StatelessWidget {
                                   );
                                 } else if (state is MovieRecommendationError) {
                                   return Text(state.message);
-                                } else if (state
-                                    is MovieRecommendationHasData) {
+                                } else if (state is MovieRecommendationHasData) {
                                   return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
@@ -200,21 +187,15 @@ class DetailContent extends StatelessWidget {
                                               );
                                             },
                                             child: ClipRRect(
-                                              borderRadius:
-                                                  const BorderRadius.all(
+                                              borderRadius: const BorderRadius.all(
                                                 Radius.circular(8),
                                               ),
                                               child: CachedNetworkImage(
-                                                imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                                placeholder: (context, url) =>
-                                                    const Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
+                                                imageUrl: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                                                placeholder: (context, url) => const Center(
+                                                  child: CircularProgressIndicator(),
                                                 ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        const Icon(Icons.error),
+                                                errorWidget: (context, url, error) => const Icon(Icons.error),
                                               ),
                                             ),
                                           ),

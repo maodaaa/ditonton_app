@@ -17,7 +17,7 @@ class TvDetailPage extends StatefulWidget {
   const TvDetailPage({super.key, required this.id});
 
   @override
-  _TvDetailPageState createState() => _TvDetailPageState();
+  createState() => _TvDetailPageState();
 }
 
 class _TvDetailPageState extends State<TvDetailPage> {

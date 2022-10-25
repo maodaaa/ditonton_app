@@ -11,7 +11,7 @@ class WatchlistPage extends StatefulWidget {
   const WatchlistPage({super.key});
 
   @override
-  _WatchlistPageState createState() => _WatchlistPageState();
+  createState() => _WatchlistPageState();
 }
 
 class _WatchlistPageState extends State<WatchlistPage> with RouteAware {

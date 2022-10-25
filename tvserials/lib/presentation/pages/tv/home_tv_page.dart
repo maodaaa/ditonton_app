@@ -11,7 +11,7 @@ class HomeTvPage extends StatefulWidget {
   const HomeTvPage({super.key});
 
   @override
-  _HomeTvPageState createState() => _HomeTvPageState();
+  createState() => _HomeTvPageState();
 }
 
 class _HomeTvPageState extends State<HomeTvPage> {

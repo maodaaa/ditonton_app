@@ -13,7 +13,7 @@ class HomeMoviePage extends StatefulWidget {
   const HomeMoviePage({super.key});
 
   @override
-  _HomeMoviePageState createState() => _HomeMoviePageState();
+  createState() => _HomeMoviePageState();
 }
 
 class _HomeMoviePageState extends State<HomeMoviePage> {
